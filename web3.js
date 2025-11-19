@@ -111,7 +111,7 @@
 		'default': init$3
 	});
 
-	var require$$0$1 = /*@__PURE__*/getAugmentedNamespace(sections);
+	var require$$0 = /*@__PURE__*/getAugmentedNamespace(sections);
 
 	function getRandom(x) {
 	  return Math.floor(Math.random() * (x + 1));
@@ -180,14 +180,14 @@
 	}
 
 	const allCardDataBase = [
-	  new CardDataBase("w", "Worm", 1),
-	  new CardDataBase("f", "Fly", 2),
-	  new CardDataBase("b", "Bat", 3),
-	  new CardDataBase("s", "Spider", 4),
-	  new CardDataBase("a", "Apple", -1),
-	  new CardDataBase("y", "Berry", -2),
-	  new CardDataDiviser("m", "Meat", 2),
-	  new CardDataMultipler("r", "Brain", 2),
+	  new CardDataBase("w", "蠕虫", 1),
+	  new CardDataBase("f", "苍蝇", 2),
+	  new CardDataBase("b", "蝙蝠", 3),
+	  new CardDataBase("s", "蜘蛛", 4),
+	  new CardDataBase("a", "苹果", -1),
+	  new CardDataBase("y", "浆果", -2),
+	  new CardDataDiviser("m", "肉", 2),
+	  new CardDataMultipler("r", "大脑", 2),
 	];
 
 	function getCardDataById(idToFind) {
@@ -29474,52 +29474,12 @@
 
 	var keys = {};
 
-	const STORAGE_KEY = "brewing-disaster";
-
-	function getSave() {
-	  const save = localStorage.getItem(STORAGE_KEY);
-
-	  try {
-	    return JSON.parse(save) || {};
-	  } catch (e) {
-	    return {};
-	  }
-	}
-
-	function storeSave(save) {
-	  localStorage.setItem(STORAGE_KEY, JSON.stringify(save));
-	}
-
-	function storeKey(key, value) {
-	  const save = getSave();
-
-	  storeSave({
-	    ...save,
-	    [key]: value,
-	  });
-	}
-
-	function getKey(key) {
-	  const save = getSave();
-
-	  return save[key];
-	}
-
-	var save = /*#__PURE__*/Object.freeze({
-		__proto__: null,
-		storeKey: storeKey,
-		getKey: getKey
-	});
-
-	var require$$0 = /*@__PURE__*/getAugmentedNamespace(save);
-
 	(function (exports) {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.setPrivateKey = void 0;
 		exports.getPublicKey = getPublicKey;
 		exports.generateNewPrivateKey = generateNewPrivateKey;
 		exports.default = init;
-		const save_1 = require$$0;
 		let privateKey;
 		let publicKey;
 		async function hash(text) {
@@ -29539,7 +29499,6 @@
 		    return publicKey;
 		}
 		const setPrivateKey = async (newKey) => {
-		    (0, save_1.storeKey)("privateKey", newKey);
 		    privateKey = newKey;
 		    if (!privateKey) {
 		        publicKey = null;
@@ -29555,7 +29514,7 @@
 		    return await (0, exports.setPrivateKey)(newPrivateKey);
 		}
 		async function init() {
-		    return (0, exports.setPrivateKey)((0, save_1.getKey)("privateKey"));
+		    return null;
 		} 
 	} (keys));
 
@@ -30063,7 +30022,7 @@
 	function renderOpponentList(opponentIds, wins, nextOpponent) {
 	  opponentList.innerHTML = "";
 	  wizardName.innerHTML = `${nextOpponent.name}${
-    wins > 3 ? " <span>(hard)</span>" : ""
+    wins > 3 ? " <span>(困难)</span>" : ""
   }`;
 	  nextWizardDesc.innerHTML = nextOpponent.desc;
 	  nextWizardPutridity.innerHTML = nextOpponent.startPutridity;
@@ -30368,7 +30327,7 @@
 	    return (mod && mod.__esModule) ? mod : { "default": mod };
 	};
 	Object.defineProperty(web3, "__esModule", { value: true });
-	const sections_1 = __importStar(require$$0$1);
+	const sections_1 = __importStar(require$$0);
 	const cards_1 = require$$1$1;
 	const thirdWebClient_1 = __importDefault(thirdWebClient);
 	const keys_1 = __importStar(keys);

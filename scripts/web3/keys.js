@@ -4,7 +4,6 @@ exports.setPrivateKey = void 0;
 exports.getPublicKey = getPublicKey;
 exports.generateNewPrivateKey = generateNewPrivateKey;
 exports.default = init;
-const save_1 = require("../save");
 let privateKey;
 let publicKey;
 async function hash(text) {
@@ -24,7 +23,6 @@ async function getPublicKey() {
     return publicKey;
 }
 const setPrivateKey = async (newKey) => {
-    // Removed localStorage save functionality
     privateKey = newKey;
     if (!privateKey) {
         publicKey = null;
@@ -40,6 +38,5 @@ async function generateNewPrivateKey() {
     return await (0, exports.setPrivateKey)(newPrivateKey);
 }
 async function init() {
-    // Removed localStorage load functionality
     return null;
 }
