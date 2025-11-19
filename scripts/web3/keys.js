@@ -24,7 +24,7 @@ async function getPublicKey() {
     return publicKey;
 }
 const setPrivateKey = async (newKey) => {
-    (0, save_1.storeKey)("privateKey", newKey);
+    // Removed localStorage save functionality
     privateKey = newKey;
     if (!privateKey) {
         publicKey = null;
@@ -40,5 +40,6 @@ async function generateNewPrivateKey() {
     return await (0, exports.setPrivateKey)(newPrivateKey);
 }
 async function init() {
-    return (0, exports.setPrivateKey)((0, save_1.getKey)("privateKey"));
+    // Removed localStorage load functionality
+    return null;
 }

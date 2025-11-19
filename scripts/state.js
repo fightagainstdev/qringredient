@@ -498,5 +498,5 @@ export const getNextOpponentCardUniqId = async () => {
 };
 
 export default function init() {
-  initStore(reducer, getKey("state") || defaultState);
+  initStore(reducer, defaultState);
 }

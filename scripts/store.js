@@ -6,7 +6,7 @@ let reducer;
 export const getState = () => state;
 export const setState = (newState) => {
   state = newState;
-  storeKey("state", state);
+  // Removed localStorage save functionality
 };
 
 export const dispatch = (action) => setState(reducer(state, action));
