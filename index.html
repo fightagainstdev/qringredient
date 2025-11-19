@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>巫丹神录</title>
+    <link href="./style.css" rel="stylesheet" />
+    <link id="favIcon" rel="icon shortcut" />
+  </head>
+  <body>
+    <div id="thrownItem" class="thrownItem sprite"></div>
+
+    <main>
+      <section id="title">
+        <h1 class="sectionTitle">巫丹神录</h1>
+
+        <p class="p">由LUMIN团队制作</p>
+
+        <p class="p">
+          <a href="#newGame">点击开始</a>
+        </p>
+
+        <div class="sprite cauldron"></div>
+
+        <div class="sprites">
+          <div class="sprite w"></div>
+          <div class="sprite y"></div>
+          <div class="sprite f"></div>
+          <div class="sprite a"></div>
+          <div class="sprite s"></div>
+          <div class="sprite m"></div>
+          <div class="sprite b"></div>
+          <div class="sprite r"></div>
+        </div>
+      </section>
+
+      <section id="newGame">
+        <h2 class="sectionTitle">选择你的角色</h2>
+        <div id="characterList" class="characters"></div>
+      </section>
+
+      <section id="rules">
+        <h2 class="sectionTitle">所以，你想成为最好的巫师吗？</h2>
+        <p class="p">
+          你和另一个巫师共享一个<span class="sprite cauldron"></span>
+          <em>（大锅）</em>。<br />
+          这个大锅有一定量的<span class="sprite skull"></span>
+          <em>（腐烂度）</em>。<br />
+          向大锅添加配料来增加或减少
+          <span class="sprite skull"></span>。<br />
+          第一个达到
+          <span class="sprite skull"></span>的<b>13</b>或<b>0</b>的巫师就
+          <b>输了</b>。<br />
+          祝好运！<br />
+          <a class="inlineLink" href="#levelList">开始</a>
+        </p>
+
+        <div class="footer">
+          <div class="footerInner column">
+            <p style="margin: 0">
+              <b>你的起始配料：</b>
+            </p>
+            <ul id="ruleCardList" class="cardList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="levelList">
+        <h2 class="sectionTitle">你的下一场决斗对手是：</h2>
+
+        <h3 id="wizardName" class="subTitle"></h3>
+
+        <q id="nextWizardDesc" class="subText"></q>
+
+        <p class="subText" style="margin: 4px 0">
+          初始<span class="sprite skull"></span>：
+          <span id="nextWizardPutridity"></span>
+        </p>
+
+        <div style="flex-grow: 1">
+          <div id="opponentList"></div>
+        </div>
+        <div class="footer">
+          <div class="footerInner column">
+            <p style="margin: 0">
+              <b>下一对手的配料：</b>
+            </p>
+            <ul id="nextWizardCards" class="cardList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="battleGame">
+        <div id="scene" class="scene">
+          <canvas id="floorCanvas" width="848" height="92"></canvas>
+
+          <div id="playerScene" class="sprite character"></div>
+
+          <div id="cauldronContainer">
+            <div id="cauldronScene" class="sprite cauldron">
+              <div class="sprite skull"></div>
+              <div>:</div>
+              <div id="putridityValue"></div>
+            </div>
+            <div id="fire" class="sprite"></div>
+          </div>
+
+          <div id="opponentScene" class="sprite character"></div>
+
+          <div id="cauldronContent"></div>
+
+          <div class="battleResults">
+            <h2 class="resultsTitle won">胜利！</h2>
+            <h2 class="resultsTitle lost">失败...</h2>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="footerInner">
+            <div id="hand"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="battleResultsWon">
+        <div id="chooseIngredients">
+          <h2 class="chooseTitle">选择一包新配料</h2>
+          <div id="cardAwards" class="options"></div>
+        </div>
+
+        <div id="choosePassive">
+          <h2 class="chooseTitle">选择一个配料改进</h2>
+          <div id="passiveAwards" class="options"></div>
+        </div>
+
+        <div id="chooseBonusDeck">
+          <h2 class="chooseTitle">当前配料</h2>
+          <ul id="playerDeck" class="cardList"></ul>
+        </div>
+      </section>
+
+      <section id="firstGameLost" class="gameEnd">
+        <h2 class="sectionTitle">太糟糕了...</h2>
+        <p class="p">下次你会做得更好！</p>
+        <p class="p">
+          既然这是你的第一次失败，你解锁了这个非常特殊的角色：
+        </p>
+        <div class="characters">
+          <div class="card">
+            <div class="image sprite custom"></div>
+            <div class="name">自定义巫师</div>
+            <div class="effect">选择你的起始配料！</div>
+          </div>
+        </div>
+        <p class="p">
+          你可以创建你自己的起始配料列表！<br />但请注意，使用这个角色<b>不会</b>解锁其他角色。
+        </p>
+        <p class="p">
+          <a class="inlineLink" href="#newGame">再玩一次</a>
+        </p>
+      </section>
+
+      <section id="gameWin" class="gameEnd">
+        <h2 class="sectionTitle">恭喜！</h2>
+        <p class="p">你击败了所有的巫师！</p>
+
+        <div id="unlockCharacter">
+          <p class="p">你解锁了一个新角色：</p>
+          <div id="unlockedCharacter" class="characters"></div>
+        </div>
+
+        <div id="playWithOtherToUnlock">
+          <p class="p">使用其他角色来解锁更多的！</p>
+        </div>
+
+        <div id="allCharactersUnlocked">
+          <p class="p">
+            你已经解锁了所有角色，这意味着你完成了游戏，
+            太厉害了！<br /><br />
+            谢谢游玩 &lt;3
+          </p>
+        </div>
+
+        <p class="p">
+          <a class="inlineLink" href="#newGame">再玩一次</a>
+        </p>
+
+        <div class="sprite cauldron"></div>
+      </section>
+    </main>
+    <p class="p" id="gameOptions">
+      <label><input id="soundsCheckbox" type="checkbox" /> 启用声音</label>
+    </p>
+
+    <script type="module" src="scripts/index.js"></script>
+  </body>
+</html>
