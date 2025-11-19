@@ -83,27 +83,13 @@ import { zip, COMPRESSION_LEVEL } from "zip-a-folder";
 
   fs.writeFileSync("min.html", minifiedHTML, { encoding: "utf8" });
 
-  console.log("Pack project...");
-  const inputToPack = [
-    {
-      data: minifiedHTML,
-      type: "text",
-      action: "write",
-    },
-  ];
-
-  const packer = new Packer(inputToPack);
-  await packer.optimize();
-
-  const packedCode = packer.makeDecoder();
-
   console.log("Write entry files...");
 
   fs.mkdirSync("./entry");
 
   fs.writeFileSync(
     "./entry/index.html",
-    `<script>${packedCode.firstLine + packedCode.secondLine}</script>`,
+    minifiedHTML,
     { encoding: "utf8" }
   );
 
